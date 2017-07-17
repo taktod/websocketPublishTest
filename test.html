@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <script type="text/javascript">
+"use strict"
+            var Module = {};
+            Module.memoryInitializerPrefixURL = 'js/bower_components/ttlibjsemc/';
+            window.AudioContext = window.AudioContext || window.webkitAudioContext;
+            window.OfflineAudioContext = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+        </script>
+    </head>
+    <body>
+        <div>html5で配信する動作テスト</div>
+        <div>
+          <input type="text" id="address" value="ws://localhost:8080/publish" /> <br />
+          <button onclick="start()">開始</button> <br />
+          <video id="view"></video>  
+        </div>
+<script type="text/javascript">
+  function start() {
+    ws = new WebSocket(document.getElementById("address").value);
+    navigator.mediaDevices.getUserMedia({video: true, audio: true})
+    .then((stream) => {
+      var video = document.getElementById("view");
+      video.srcObject = stream
+      video.play();
+      var recorder = new MediaRecorder(stream);
+      recorder.ondataavailable = (event) => {
+        ws.send(event.data);
+      };
+      recorder.start(100)
+    })
+  }
+</script>
+    </body>
+</html>
