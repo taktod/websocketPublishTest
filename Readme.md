@@ -20,3 +20,20 @@ websocketでデータ取得 -> readerでwebm解析 -> h264とaacにencode -> fra
 としてます。
 
 html5のブラウザだけで、高画質な配信できるのは便利ですね。
+
+# テストのしかた
+
+このプログラムをDLして
+
+```
+$ go run socket.go
+```
+
+でsocket.goを実行するとサーバーとして待機はじめます。
+
+https://taktod.github.io/websocketPublishTest/test.html
+ここにアクセスして
+アドレスを指定して
+開始ボタンを押すと
+
+websocketで通信して、goのプロセスがtest.mp4というファイルを作ります。
