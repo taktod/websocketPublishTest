@@ -31,7 +31,7 @@ $ go run socket.go
 
 でsocket.goを実行するとサーバーとして待機はじめます。
 
-https://taktod.github.io/websocketPublishTest/test.html
+https://taktod.github.io/websocketPublishTest/test.html  
 ここにアクセスして  
 アドレスを指定して  
 開始ボタンを押すと  
